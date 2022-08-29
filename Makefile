@@ -1,39 +1,48 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mkovoor <mkovoor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 12:12:10 by mkovoor           #+#    #+#              #
-#    Updated: 2022/08/23 14:29:52 by mkovoor          ###   ########.fr        #
+#    Updated: 2022/08/26 09:46:50 by mkovoor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc -g3
+NAME		= so_long
 
-FLAGS = -Wall -Wextra -Werror
+SRCS	= 	test.c
 
-LINKS = -lmlx -framework OpenGL -framework AppKit
 
-RM = rm -rf
+OBJS	=	${SRCS:.c=.o}
 
-SRC = test.c
+MLX_DIR		= ./minilibx
+MLX_FLAGS	= -lmlx -lz -framework OpenGL -framework AppKit
 
-OBJ = ${SRC:.c=.o}
+CC		=	gcc
+RM		=	rm -f
+CFLAGS	=	-Wall -Werror -Wextra
+LFLAGS	=  -L $(MLX_DIR) -lmlx
 
-all: ${OBJ}
-	${MAKE} -C ./minilibx
-	${CC} ${FLAGS} ${LINKS} ${OBJ} -o solong
+%.o : %.c
+	$(CC) -Imlx -c -o $@ $<
 
-clean:
-	${RM} ${OBJ}
+$(NAME)	:	$(OBJS)
+		$(MAKE) -s -C $(MLX_DIR) all
+		$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -o $(NAME) $(LFLAGS)
 
-fclean:
-	${RM} solong
-	${MAKE} clean -C ./minilibx
+all	:	$(NAME)
 
-re: fclean all
 
-.PHONY: all clean fclean re
-	
+clean	:
+			$(RM) $(OBJS) 
+			$(MAKE) -s -C $(MLX_DIR) clean
+
+
+fclean	:	clean
+		$(RM) $(NAME)
+
+
+re	:	fclean all
+
