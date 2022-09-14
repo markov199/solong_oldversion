@@ -6,13 +6,13 @@
 #    By: mkovoor <mkovoor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 12:12:10 by mkovoor           #+#    #+#              #
-#    Updated: 2022/08/26 09:46:50 by mkovoor          ###   ########.fr        #
+#    Updated: 2022/09/12 09:10:50 by mkovoor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 
-SRCS	= 	test.c
+SRCS	= 	 test.c solong_map_utils.c queue_utils.c solong_utils.c
 
 
 OBJS	=	${SRCS:.c=.o}
@@ -20,7 +20,7 @@ OBJS	=	${SRCS:.c=.o}
 MLX_DIR		= ./minilibx
 MLX_FLAGS	= -lmlx -lz -framework OpenGL -framework AppKit
 
-CC		=	gcc
+CC		=	gcc -g3
 RM		=	rm -f
 CFLAGS	=	-Wall -Werror -Wextra
 LFLAGS	=  -L $(MLX_DIR) -lmlx
