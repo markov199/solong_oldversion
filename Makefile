@@ -6,13 +6,14 @@
 #    By: mkovoor <mkovoor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/23 12:12:10 by mkovoor           #+#    #+#              #
-#    Updated: 2022/09/12 09:10:50 by mkovoor          ###   ########.fr        #
+#    Updated: 2022/09/15 15:14:24 by mkovoor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= so_long
 
-SRCS	= 	 test.c solong_map_utils.c queue_utils.c solong_utils.c
+SRCS	= 	 test.c solong_map_utils.c queue_utils.c solong_utils.c solong_game_utils.c \
+			solong_move_utils.c 
 
 
 OBJS	=	${SRCS:.c=.o}

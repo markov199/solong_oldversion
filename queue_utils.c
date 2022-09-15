@@ -6,7 +6,7 @@
 /*   By: mkovoor <mkovoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 13:01:04 by mkovoor           #+#    #+#             */
-/*   Updated: 2022/09/09 11:25:54 by mkovoor          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:56:50 by mkovoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ t_queue	*ft_queue_new(int index)
 	return (new);
 }
 
-void ft_queue_delete(t_queue **queue)
+void	ft_queue_delete(t_queue **queue)
 {
-	t_queue *temp;
-	
+	t_queue	*temp;
+
 	if (!(*queue))
 		return ;
-	while(*queue)
+	while (*queue)
 	{
 		temp = *queue;
 		*queue = (*queue)->next;
@@ -57,12 +57,12 @@ void ft_queue_delete(t_queue **queue)
 	*queue = NULL;
 }
 
-void ft_queue_print(t_queue *queue)
+void	ft_queue_print(t_queue *queue)
 {
-	t_queue *temp;
+	t_queue	*temp;
 
 	temp = queue;
-	while(temp)
+	while (temp)
 	{
 		printf("%d,", temp->index);
 		temp = temp->next;
@@ -70,3 +70,18 @@ void ft_queue_print(t_queue *queue)
 	printf("\n");
 }
 
+int	pop_queue(t_queue **queue)
+{
+	int		temp;
+	t_queue	*ptr;
+
+	if (queue != NULL)
+	{
+		ptr = *queue;
+		temp = ptr ->index;
+		*queue = ptr->next;
+		free(ptr);
+		return (temp);
+	}
+	return (-1);
+}

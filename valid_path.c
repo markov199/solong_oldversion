@@ -6,7 +6,7 @@
 /*   By: mkovoor <mkovoor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/05 12:52:04 by mkovoor           #+#    #+#             */
-/*   Updated: 2022/09/12 14:50:10 by mkovoor          ###   ########.fr       */
+/*   Updated: 2022/09/15 17:46:05 by mkovoor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void ft_visit(char *str, int position, t_map *map, t_queue *queue)
 	if(str[position] == 'C')
 	{
 		ft_queue_add_back(&queue, ft_queue_new(position));
-		map->collected_C ++;
+		map->collected_c ++;
 	}
 	if (str[position] == 'E')
 	{
@@ -57,7 +57,7 @@ int ft_valid_path(t_map *map)
 	node = map->plyr_pos;
 	str = strdup(map->map_str);
 	printf("%s map\n", str);
-	while (queue != NULL || (map->valid_exit != 1  && map->collected_C < map->count_C ))
+	while (queue != NULL || (map->valid_exit != 1  && map->collected_c < map->count_c ))
 	{
 		
 		ft_visit(str, node -1, map, queue);
@@ -68,7 +68,7 @@ int ft_valid_path(t_map *map)
 		str[node] = -1;		
 		node = pop_queue(&queue);
 	}
-	if (map->valid_exit == 1  && map->collected_C == map->count_C)
+	if (map->valid_exit == 1  && map->collected_c == map->count_c)
 		return (0);
 	else 
 		return (-1);
